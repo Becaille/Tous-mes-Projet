@@ -1,0 +1,163 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: grey;
+}
+
+h1 {
+    font-size: 4rem;
+    margin: 0;
+    color: red;
+    text-align: center;
+    background-color: black;
+    padding: 1%;
+    text-decoration: underline overline grey;
+}
+
+div p {
+     text-decoration: underline red;
+}
+
+p {
+    font-size: 2rem;
+    text-align: center;
+    color: black;
+}
+
+article {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.carre:hover {
+    background: radial-gradient(ellipse at center, rgba(255,175,75,1) 0%, rgba(255,255,255,1) 100%);
+	animation: neon 0.4s ease-in-out;
+}
+
+
+@keyframes neon {
+   from {
+     box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ffaf4b, 0 0 70px #ffaf4b, 0 0 80px #ffaf4b, 0 0 100px #ffaf4b, 0 0 150px #ffaf4b;
+   }
+   to {
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ffaf4b, 0 0 35px #ffaf4b, 0 0 40px #ffaf4b, 0 0 50px #ffaf4b, 0 0 75px #ffaf4b;
+	}
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.container {
+    
+    display: flex;
+}
+.square {
+    box-shadow: 60px -16px red;
+    border-radius: 10px;
+    padding: 5%;
+    width: 500px;
+    height: 500px;
+    background-color: black;
+}
+
+
+#square1 {
+    cursor: pointer;
+    border-radius: 10px;
+    transform: translate(-30px, -20px);
+    width: 150px;
+    height: 150px;
+    background-color: red;
+}
+
+
+
+
+#square2 {
+    cursor: pointer;
+    border-radius: 10px;
+    transform: translate(180px, -170px);
+    width: 150px;
+    height: 150px;
+    background-color: rgb(109, 84, 84);
+}
+
+
+#square3 {
+    cursor: pointer;
+    border-radius: 10px;
+    transform: translate(380px, -320px);
+    width: 150px;
+    height: 150px;
+    background-color: yellow;
+}
+
+
+#square4 {
+    cursor: pointer;
+    border-radius: 10px;
+    transform: translate(-30px, -270px);
+    width: 150px;
+    height: 150px;
+    background-color: orange;
+}
+
+#square5 {
+    cursor: pointer;
+    border-radius: 10px;
+    transform: translate(180px, -420px);
+    width: 150px;
+    height: 150px;
+    background-color: purple;
+}
+
+#square6 {
+    cursor: pointer;
+    border-radius: 10px;
+    transform: translate(380px, -570px);
+    width: 150px;
+    height: 150px;
+    background-color: white;
+}
+
+
+#square7 {
+    cursor: pointer;
+    border-radius: 10px;
+    transform: translate(-30px, -520px);
+    width: 150px;
+    height: 150px;
+    background-color: green;
+}
+
+
+#square8 {
+    cursor: pointer;
+    border-radius: 10px;
+    transform: translate(180px, -670px);
+    width: 150px;
+    height: 150px;
+    background-color: salmon;
+}
+
+#square9 {
+    cursor: pointer;
+    border-radius: 10px;
+    transform: translate(380px, -820px);
+    width: 150px;
+    height: 150px;
+    background-color: blue;
+}

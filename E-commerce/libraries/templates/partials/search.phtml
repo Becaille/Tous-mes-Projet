@@ -1,0 +1,24 @@
+<!-- Rayon content -->
+		<header>
+				<h1><?= $tplVars['searchTitle']; ?></h1>
+		</header>
+		<section class="product-list">
+			<?php if ($tplVars['nb'] == 0): ?>
+			<h2>Aucun résultat ...</h2>
+			<?php else: ?>
+			<h2>Résultat(s) de la recherche : (<?= $tplVars['nb']; ?>)</h2>
+			<ul class="cols cols--4 gutter">
+			    <!-- boucle sur les produits -->
+			    <?php foreach($tplVars['prods'] as $p): ?>
+				<li>
+					<a href="<?= $tplVars['WWW_URL']; ?>index.php?controller=product&task=index&id=<?= intval($p['Id']);?>">
+					<img src="<?= $tplVars['WWW_URL']; ?>uploads/product/<?= htmlspecialchars($p['Visuel']); ?>" />
+					<span><?= htmlspecialchars($p['Name']); ?></span>
+					</a>
+				</li>
+				<?php endforeach; ?>
+				<!-- boucle sur les produits -->
+			</ul>
+			<?php endif; ?>
+		</section>
+<!-- Rayon content -->

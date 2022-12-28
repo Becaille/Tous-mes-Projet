@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>HiTech.NET</title>
+	<link rel="icon" type="image/svg+xml" href="<?= $tplVars['WWW_URL']; ?>assets/images/logo.svg">
+	<link rel="stylesheet" href="<?= $tplVars['WWW_URL']; ?>assets/css/normalize.css">
+	<link rel="stylesheet" href="<?= $tplVars['WWW_URL']; ?>assets/css/fonts.css">
+	<link rel="stylesheet" href="<?= $tplVars['WWW_URL']; ?>assets/css/icons.css">
+	<link rel="stylesheet" href="<?= $tplVars['WWW_URL']; ?>assets/css/style.css">
+	<link rel="stylesheet" href="<?= $tplVars['WWW_URL']; ?>assets/css/MyStyle.css">
+	<link rel="stylesheet" href="<?= $tplVars['WWW_URL']; ?>assets/css/table.css">
+</head>
+<body id="top">
+		<?php if (\Session::hasFlashes('error')): ?>
+		<div class="alert-section">
+	        <div class="alert alert-element alert-danger is-active">
+	            <div class="icon">
+	                <img src="<?= $tplVars['WWW_URL']; ?>assets/images/icon/bell.svg" alt="notification icon" />
+	            </div>
+	            <div class="text">
+	                <?php foreach (\Session::getFlashes('error') as $message): ?>
+						<p><?=$message?></p>
+					<?php endforeach?>
+	            </div>
+	        </div>
+	    </div>
+		<?php endif?>
+
+		<?php if (\Session::hasFlashes('success')): ?>
+		<div class="alert-section">
+	        <div class="alert alert-element alert-success is-active">
+	            <div class="icon">
+	                <img src="<?= $tplVars['WWW_URL']; ?>assets/images/icon/bell.svg" alt="notification icon" />
+	            </div>
+	            <div class="text">
+	                <?php foreach (\Session::getFlashes('success') as $message): ?>
+						<p><?=$message?></p>
+					<?php endforeach?>
+	            </div>
+	        </div>
+	    </div>
+		<?php endif?>
+    	<div class="hidden-menu">
+		<a href="#top">Haut de page</a>
+		<a href="#searchbar">Recherche</a>
+		<a href="#toolbar">Mon compte</a>
+		<a href="#menu">Menu principal</a>
+		<a href="#toc">Sommaire</a>
+	</div>
+	<header class="header">
+		<div class="container display">
+			<div>Options d'affichage / accessiblité</div>
+			<div>
+				Thème&nbsp;:
+				<button id="theme-dark">sombre contrasté</button>
+				<button id="theme-none">clair</button>
+			</div>
+			<div>
+				Interlignage&nbsp;:
+				<button id="line-normal">simple</button>
+				<button id="line-large">augmenté</button>
+			</div>
+		</div>
+		<div class="container cols cols--4">
+			<div class="logo">
+				<img src="<?= $tplVars['WWW_URL']; ?>assets/images/logo.svg" alt="Logo HiTech.NET" width="64">
+				<p>HiTech.NET</p>
+				<p>Tout le matériel High-Tech</p>
+			</div>
+			<div id="searchbar" class="searchbar double hide-md" role="searchbox">
+				<form action="<?= $tplVars['WWW_URL']; ?>index.php?controller=search" method="post" novalidate="novalidate">
+					<input name="query" type="text" placeholder="Chercher un produit" value="<?php echo (array_key_exists('search', $tplVars)) ? $tplVars['search']['query'] : '';?>">
+					<span>❯❯❯</span>
+					<select name="productline">
+						<option value="0">Tous les rayons...</option>
+						<!-- boucle sur les rayons -->
+						<?php foreach($tplVars['productLines'] as $productLine): ?>
+						<option value="<?= intval($productLine['Id']);?>"<?php echo (array_key_exists('search', $tplVars)) ? ($tplVars['search']['prodl'] == intval($productLine['Id'])) ? ' selected' : '' : '';?>><?= htmlspecialchars($productLine['Name']); ?></option>
+						<?php endforeach; ?>
+						<!-- boucle sur les rayons -->
+					</select>
+					<button><i class="icon-search"></i></button>
+				</form>
+			</div>
+			<div id="toolbar" class="toolbar" role="toolbar">
+				<?php
+				//si je suis connecté, j'affiche pseudo + bouton de déconnexion
+				//sinon j'affiche le bouton de connexion
+				if (\Session::isConnected()):
+				?>
+				<a href="<?= $tplVars['WWW_URL']; ?>index.php?controller=user&task=out" id="user-button"><i class="icon-close"></i>Hello <?= \Session::getFirstName();?></a>
+				<?php
+				else:
+				?>
+				<a href="<?= $tplVars['WWW_URL']; ?>index.php?controller=user&task=loginForm" id="user-button"><i class="icon-user"></i>Mon compte</a>
+				<?php 
+				endif;
+				?>
+				<a href="#" id="cart-button" class="cart-button"><i class="icon-cart"></i>Mon panier</a>
+			</div>
+		</div>
+		<nav id="menu" class="menu container">
+			<ul class="cols cols--4">
+				<!-- boucle sur les rayons -->
+				<?php foreach($tplVars['productLines'] as $productLine): ?>
+				<li><a href="<?= $tplVars['WWW_URL']; ?>index.php?controller=productLine&task=index&id=<?= intval($productLine['Id']);?>"><i class="<?= htmlspecialchars($productLine['Icon']); ?>"></i><?= htmlspecialchars($productLine['Name']); ?></a></li>
+				<?php endforeach; ?>
+				<!-- boucle sur les rayons -->
+			</ul>
+		</nav>
+	</header>
+    <main class="main container">
+        <?= $pageContent ?>
+    </main>
+    <footer class="footer">
+		<nav class="container menu">
+			<ul class="cols cols--4">
+				<!-- boucle sur les rayons -->
+				<?php foreach($tplVars['productLines'] as $productLine): ?>
+				<li><a href="<?= $tplVars['WWW_URL']; ?>index.php?controller=productLine&task=index&id=<?= intval($productLine['Id']);?>"><i class="<?= htmlspecialchars($productLine['Icon']); ?>"></i><?= htmlspecialchars($productLine['Name']); ?></a></li>
+				<?php endforeach; ?>
+				<!-- boucle sur les rayons -->
+			</ul>
+		</nav>
+		<div class="container cols cols--2 gutter">
+			<section class="payment">
+				<h2>Moyens de paiement</h2>
+				<div>
+					<span class="payment-mastercard"></span>
+					<span class="payment-cb"></span>
+					<span class="payment-visa"></span>
+					<span class="payment-virement"></span>
+				</div>
+			</section>
+			<section class="social">
+				<h2>Sur les réseaux sociaux</h2>
+				<div>
+					<a href="#"><i class="icon-facebook"></i></a>
+					<a href="#"><i class="icon-instagram"></i></a>
+					<a href="#"><i class="icon-twitter"></i></a>
+					<a href="#"><i class="icon-linkedin"></i></a>
+				</div>
+			</section>
+			<nav>
+				<h2>A propos</h2>
+				<ul class="unstyled">
+					<li><a href="#">Qui sommes-nous ?</a></li>
+					<li><a href="#">Nos services</a></li>
+					<li><a href="#">Contactez-nous</a></li>
+				</ul>
+			</nav>
+			<nav>
+				<h2>A propos</h2>
+				<ul class="unstyled">
+					<li><a href="#">Plan du site</a></li>
+					<li><a href="#">Foire Aux Questions</a></li>
+					<li><a href="#">Conditions générales de vente</a></li>
+					<li><a href="#">Informations légales</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div class="license container" role="article">
+			<p><a rel="license" href="https://3wa.fr/propriete-materiel-pedagogique/"><img alt="Propriété de la 3W Academy" src="https://3wa.fr/wp-content/themes/3wa2015/img/logos/big.png"></a></p>
+			<p>Ce matériel pédagogique est la propriété de la <a rel="license" href="https://3wa.fr/propriete-materiel-pedagogique/">3W Academy</a>. Cet exercice a été réalisé par Stephane Pereck.</p>
+		</div>
+	</footer>
+	<?php if (!$tplVars['isArticle']): ?>
+<div id="modal-backdrop" class="modal-backdrop"></div>
+	<section id="cart-modal" class="modal modal--sm cart-modal" role="dialog">
+		<a href="#" class="close">&times;</a>
+		<h2>Mon panier</h2>
+		<div id="cart-empty">
+			<p>Aucun article</p>
+		</div>
+		<div id="cart-table" class="hidden">
+			<ul class="unstyled"></ul>
+			<form method="POST" action="<?= $tplVars['WWW_URL']; ?>index.php?controller=cart&task=step1">
+			<input type="hidden" id="cartJson" name="cart" />
+			<button type="submit" class="button">valider la commande</button>
+		</form>
+		</div>
+	</section>
+	
+<script src="<?= $tplVars['WWW_URL']; ?>assets/js/modal.js"></script>
+<script src="<?= $tplVars['WWW_URL']; ?>assets/js/cart.js"></script>
+
+<script>
+var modal1 =  new Modal('#cart-modal', '#modal-backdrop');
+modal1.addTrigger('#cart-button', 'open');
+modal1.addTrigger('#cart-modal .close', 'close');
+
+
+var cart = new Cart('#cart-button', '#cart-table', '#cart-empty');
+
+cart.restore();
+cart.update();
+</script>
+<?php endif; ?>
+<script>
+
+
+var body = document.querySelector('body');
+document.getElementById('theme-dark').addEventListener('click', function(event) {
+	body.classList.add('theme-dark');
+}, false);
+document.getElementById('theme-none').addEventListener('click', function(event) {
+	body.classList.remove('theme-dark');
+}, false);
+document.getElementById('line-large').addEventListener('click', function(event) {
+	body.classList.add('line-large');
+}, false);
+document.getElementById('line-normal').addEventListener('click', function(event) {
+	body.classList.remove('line-large');
+}, false);
+
+</script>
+</body>

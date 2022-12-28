@@ -1,0 +1,46 @@
+<!-- list des orders -->
+<div class="table-responsive">
+				<table class="table table-bordered table-striped">
+					<thead class="thead-dark">
+						<tr>
+							<th>Id</th>
+							<th>Client</th>
+							<th>Date de la commande</th>
+							<th>Date de paiement</th>
+							<th>Date d'expédition</th>
+							<th>Statut</th>
+							<th class="text-right" width="20%">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+					    <!-- boucle sur les orders -->
+					    <?php foreach($tplVars['list'] as $item): ?>
+						<tr>
+							<td><?= intval($item['Id']); ?></td>
+							<td><?= htmlspecialchars($item['FirstName']); ?> <?= htmlspecialchars($item['LastName']); ?></td>
+							<td><?= htmlspecialchars($item['Created_at']); ?></td>
+							<td><?= htmlspecialchars($item['Paiement_at']); ?></td>
+							<td><?= htmlspecialchars($item['Shipping_at']); ?></td>
+							<td>
+								<?php switch(intval($item['Status'])):
+								case 1:?>
+										cmd créée
+										<?php break;?>
+									<?php case 2:?>
+										cmd payée
+										<?php break;?>
+									<?php case 3:?>
+										cmd expédiée
+										<?php break;?>
+								<?php endswitch; ?>
+							</td>
+							<td class="text-right">
+								<a class="btn btn-sm btn-outline-secondary" href="<?= $tplVars['WWW_URL']; ?>index.php?controller=Admin\<?= $tplVars['crud'];?>&task=detail&id=<?= intval($item['Id']);?>"><i class="fa fa-pencil"></i> Modifier</a>
+							</td>
+						</tr>
+						<?php endforeach; ?>
+						<!-- boucle sur les orders -->
+					</tbody>
+				</table>
+			</div>
+<!-- list des orders -->

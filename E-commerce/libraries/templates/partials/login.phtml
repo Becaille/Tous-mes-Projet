@@ -1,0 +1,27 @@
+<!-- Login content -->
+<section>
+    <h2>Mon compte</h2>
+    <form action="<?= $tplVars['WWW_URL']; ?>index.php?controller=user&task=login" method="POST">
+        <input type="hidden" name="token" value="<?= $tplVars['Token']; ?>" />
+        <fieldset>
+            <legend>J'ai déjà un compte</legend>
+            <div class="field">
+                <label>Mon adresse email</label>
+                <div class="value"><input name="email" type="text"></div>
+            </div>
+            <div class="field">
+                <label>Mon mot de passe</label>
+                <div class="value"><input name="password" type="password"></div>
+            </div>
+            <div class="field">
+                <button class="button">Se connecter</button>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Je n'ai pas de compte</legend>
+            <div class="field"><a href="<?= $tplVars['WWW_URL']; ?>index.php?controller=user&task=index" class="button">Créer un compte</a></div>
+        </fieldset>
+    </form>
+</section>
+
+<!-- Login content -->

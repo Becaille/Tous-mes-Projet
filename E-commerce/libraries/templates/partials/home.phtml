@@ -1,0 +1,19 @@
+<nav class="breadcrumb hide-md">
+	<ul>
+		<li><i class="icon-shop"></i>Accueil</li>
+	</ul>
+</nav>
+<header>
+	<h1>Accueil</h1>
+</header>
+<section>
+	<h2>Liste des rayons</h2>
+	<ul>
+		<!-- boucle sur les rayons -->
+		<?php foreach($tplVars['productLines'] as $productLine): ?>
+		<li><a href="<?= $tplVars['WWW_URL']; ?>index.php?controller=productLine&task=index&id=<?= intval($productLine['Id']);?>"><?= htmlspecialchars($productLine['Name']); ?> (nb products)</a></li>
+		<?php endforeach; ?>
+		<!-- boucle sur les rayons -->
+	</ul>
+</section>
+	

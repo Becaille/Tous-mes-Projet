@@ -1,0 +1,27 @@
+<form enctype="multipart/form-data" action="<?= $tplVars['WWW_URL']; ?>index.php?controller=Admin\<?= $tplVars['crud'];?>&task=update" method="POST">
+    <input type="hidden" name="id" value="<?= intval($_GET['id']); ?>" />
+    <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center my-4">
+        <a class="btn btn-outline-secondary" href="<?= $tplVars['WWW_URL']; ?>index.php?controller=Admin\<?= $tplVars['crud'];?>&task=index"><i class="fa fa-times"></i> Annuler les modifications</a>
+        <button class="btn btn-primary"><i class="fa fa-check"></i> Valider et enregistrer</button>
+    </div>
+
+    <fieldset class="p-3 bg-light">
+        <div class="form-group row">
+            <label for="name" class="col-sm-3 col-form-label">Nom</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="name" name="name" value="<?= htmlspecialchars($tplVars['form']['Name']); ?>">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="logo" class="col-sm-3 col-form-label">Logo</label>
+            <div class="col-sm-9">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="logo" name="logo">
+                    <label class="custom-file-label" for="logo" data-browse="Parcourir">Choisir un fichier</label>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+</form>

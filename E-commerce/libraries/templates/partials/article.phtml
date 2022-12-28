@@ -1,0 +1,154 @@
+<!-- page produit -->
+		<article id="product" class="product">
+			<header>
+				<h1><?= htmlspecialchars($tplVars['prod']['Name'])?></h1>
+				<p id="toc" class="toc">
+					<a href="#presentation">Présentation</a>
+					<a href="#description">Descriptif</a>
+				</p>
+			</header>
+			<section id="presentation" class="presentation">
+				<h2>Présentation</h2>
+				<?php 
+				if (count($tplVars['tags']) >0):
+				?>
+				<p class="keywords">
+					<?php foreach($tplVars['tags'] as $item): ?>
+					<span><?= htmlspecialchars($item['Name']);?></span>
+					<?php endforeach; ?>
+				</p>
+				<?php
+				endif; 
+				?>
+				<div class="cols cols--2 gutter">
+					<?php if (count($tplVars['diaps']) > 0): ?>
+					<div id="gallery-1" class="gallery gallery--zoom">
+						<div>
+							<img src="<?= $tplVars['WWW_URL']; ?>uploads/diaporamas/<?= htmlspecialchars($tplVars['diaps'][0]['Photo_md']);?>" alt="<?= htmlspecialchars($tplVars['prod']['Name'])?>">
+							<p>Photos non contractuelles</p>
+						</div>
+						<ul>
+							<?php foreach($tplVars['diaps'] as $item): ?>
+							<li>
+								<a href="<?= $tplVars['WWW_URL']; ?>uploads/diaporamas/<?= htmlspecialchars($item['Photo_md']);?>"><img src="<?= $tplVars['WWW_URL']; ?>uploads/diaporamas/<?= htmlspecialchars($item['Photo_md']);?>" alt="<?= htmlspecialchars($tplVars['prod']['Name'])?>"></a>
+							</li>
+							<?php endforeach; ?>
+						</ul>
+					</div>
+					<?php endif; ?>
+					<div>
+						<div class="brand">
+							<p><img src="<?= $tplVars['WWW_URL']; ?>uploads/brand/<?= htmlspecialchars($tplVars['prod']['Logo']);?>" alt="<?= htmlspecialchars($tplVars['prod']['Brand_Name']);?>" class="hide-md">
+							Marque: <?= htmlspecialchars($tplVars['prod']['Brand_Name']);?></p>
+						</div>
+						<div class="cart-card">
+							<div class="cart-card_price">
+								<div><?= htmlspecialchars(str_replace(".", "€",number_format($tplVars['prod']['MSRP'],2)))?></div>
+								<small>dont éco-participation <?= htmlspecialchars(str_replace(".", "€",number_format($tplVars['prod']['Eco_tax'],2)))?></small>
+							</div>
+							<div class="cart-card_actions">
+								<button id="add-cart" class="button">Ajouter au panier</button>
+							</div>
+							<div class="cart-card_guarantee">
+								Garantie: 2 années vendeur
+							</div>
+						</div>
+						<p>
+						<?= nl2br(htmlspecialchars($tplVars['prod']['Primary_content']))?>	
+						</p>
+						
+					</div>
+				</div>
+			</section>
+			<?php
+			if ($tplVars['prod']['Description_title1'] != '' && $tplVars['prod']['Description_content1'] != '' && $tplVars['prod']['Description_title2'] != '' && $tplVars['prod']['Description_content2'] != ''):
+			?>
+			<section id="description" class="description clearfix">
+				<h2>Descriptif</h2>
+				<?php
+				if ($tplVars['prod']['Description_title1'] != '' && $tplVars['prod']['Description_content1'] != ''):
+				?>
+				<h3><?= htmlspecialchars($tplVars['prod']['Description_title1']);?></h3>
+				<?php if ($tplVars['prod']['Description_visuel1']!= ''): ?>
+				<figure class="float-right"><img src="<?= $tplVars['WWW_URL']; ?>uploads/product/<?= htmlspecialchars($tplVars['prod']['Description_visuel1'])?>" alt="<?= htmlspecialchars($tplVars['prod']['Name'])?>"></figure>
+				<?php endif; ?>
+				<p><?= nl2br(htmlspecialchars($tplVars['prod']['Description_content1']));?></p>
+				<?php
+				endif;
+
+				if ($tplVars['prod']['Description_title2'] != '' && $tplVars['prod']['Description_content2'] != ''):
+				?>
+				<h3><?= htmlspecialchars($tplVars['prod']['Description_title2']);?></h3>
+				<?php if ($tplVars['prod']['Description_visuel2']!= ''): ?>
+				<figure class="float-left"><img src="<?= $tplVars['WWW_URL']; ?>uploads/product/<?= htmlspecialchars($tplVars['prod']['Description_visuel2'])?>" alt="<?= htmlspecialchars($tplVars['prod']['Name'])?>"></figure>
+				<?php endif; ?>
+				<p><?= nl2br(htmlspecialchars($tplVars['prod']['Description_content2']));?></p>
+				<?php
+				endif;
+				?>
+			</section>
+			<?php
+			endif;
+			?>
+		</article>
+	<?php if (count($tplVars['diaps']) > 0): ?>
+	<section id="gallery-modal" class="modal modal--lg" role="dialog">
+		<a href="#" class="close">&times;</a>
+		<h2><?= htmlspecialchars($tplVars['prod']['Name'])?></h2>
+		<div id="gallery-2" class="gallery gallery--left gallery--modal">
+			<div><img src="<?= $tplVars['WWW_URL']; ?>uploads/diaporamas/<?= htmlspecialchars($tplVars['diaps'][0]['Photo_lg']);?>" alt="<?= htmlspecialchars($tplVars['prod']['Name'])?>"></div>
+			<ul>
+				<?php foreach($tplVars['diaps'] as $item): ?>
+				<li>
+					<a href="<?= $tplVars['WWW_URL']; ?>uploads/diaporamas/<?= htmlspecialchars($item['Photo_lg']);?>"><img src="<?= $tplVars['WWW_URL']; ?>uploads/diaporamas/<?= htmlspecialchars($item['Photo_lg']);?>" alt="<?= htmlspecialchars($tplVars['prod']['Name'])?>"></a>
+				</li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+	</section>
+	<?php endif; ?>
+<div id="modal-backdrop" class="modal-backdrop"></div>
+	<section id="cart-modal" class="modal modal--sm cart-modal" role="dialog">
+		<a href="#" class="close">&times;</a>
+		<h2>Mon panier</h2>
+		<div id="cart-empty">
+			<p>Aucun article</p>
+		</div>
+		<div id="cart-table" class="hidden">
+			<ul class="unstyled"></ul>
+			<form method="POST" action="<?= $tplVars['WWW_URL']; ?>index.php?controller=cart&task=step1">
+			<input type="hidden" id="cartJson" name="cart" />
+			<button type="submit" class="button">valider la commande</button>
+		</form>
+		</div>
+	</section>
+<script src="<?= $tplVars['WWW_URL']; ?>assets/js/gallery.js"></script>
+<script src="<?= $tplVars['WWW_URL']; ?>assets/js/modal.js"></script>
+<script src="<?= $tplVars['WWW_URL']; ?>assets/js/cart.js"></script>
+
+<script>
+var modal1 =  new Modal('#cart-modal', '#modal-backdrop');
+modal1.addTrigger('#cart-button', 'open');
+modal1.addTrigger('#cart-modal .close', 'close');
+
+
+var cart = new Cart('#cart-button', '#cart-table', '#cart-empty');
+cart.addProduct('product-<?= intval($tplVars['prod']['Id'])?>', '<?= htmlspecialchars($tplVars['prod']['Name'])?>', <?= number_format($tplVars['prod']['MSRP'],2, '.', '');?>);
+cart.addTrigger('#add-cart', 'addToCart', 'product-<?= intval($tplVars['prod']['Id'])?>');
+cart.restore();
+cart.update();
+
+<?php if (count($tplVars['diaps']) > 0): ?>
+var modal2 =  new Modal('#gallery-modal', '#modal-backdrop');
+modal2.addTrigger('#gallery-1 > div img', 'open');
+modal2.addTrigger('#gallery-modal .close', 'close');
+
+var gallery1 = new Gallery('#gallery-1 > div img', '#gallery-1 > ul a');
+var gallery2 = new Gallery('#gallery-2 > div img', '#gallery-2 > ul a');
+<?php endif; ?>
+
+
+</script>
+	
+
+		

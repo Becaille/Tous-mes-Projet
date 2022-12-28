@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Backoffice - HiTech.NET</title>
+	<link rel="icon" type="image/svg+xml" href="<?= $tplVars['WWW_URL']; ?>assets/admin/images/logo.svg">
+	<link rel="stylesheet" href="<?= $tplVars['WWW_URL']; ?>assets/admin/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?= $tplVars['WWW_URL']; ?>assets/admin/css/font-awesome.min.css">
+	<link rel="stylesheet" href="<?= $tplVars['WWW_URL']; ?>assets/css/icons.css">
+	<link rel="stylesheet" href="<?= $tplVars['WWW_URL']; ?>assets/admin/css/error.css">
+</head>
+
+<body>
+<?php if (\Session::hasFlashes('error')): ?>
+		<div class="alert-section">
+	        <div class="alert alert-element alert-danger is-active">
+	            <div class="icon">
+	                <img src="<?= $tplVars['WWW_URL']; ?>assets/images/icon/bell.svg" alt="notification icon" />
+	            </div>
+	            <div class="text">
+	                <?php foreach (\Session::getFlashes('error') as $message): ?>
+						<p><?=$message?></p>
+					<?php endforeach?>
+	            </div>
+	        </div>
+	    </div>
+		<?php endif?>
+
+		<?php if (\Session::hasFlashes('success')): ?>
+		<div class="alert-section">
+	        <div class="alert alert-element alert-success is-active">
+	            <div class="icon">
+	                <img src="<?= $tplVars['WWW_URL']; ?>assets/images/icon/bell.svg" alt="notification icon" />
+	            </div>
+	            <div class="text">
+	                <?php foreach (\Session::getFlashes('success') as $message): ?>
+						<p><?=$message?></p>
+					<?php endforeach?>
+	            </div>
+	        </div>
+	    </div>
+		<?php endif?>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-1" aria-controls="navbar-1" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<a class="navbar-brand" href="#">
+		<img src="<?= $tplVars['WWW_URL']; ?>assets/admin/images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+		HiTech.NET
+	</a>
+	<div class="collapse navbar-collapse" id="navbar-1">
+		<h1 class="navbar-text h2"><?= $tplVars['page_title']; ?></h1>
+		<ul class="navbar-nav ml-auto mr-5">
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbar-1-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<img alt="Avatar de <?= \Session::getFirstName();?>" src="<?= $tplVars['WWW_URL']; ?>assets/admin/images/avatar.png" width="48"> <?= \Session::getFirstName();?>
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbar-1-dropdown">
+					<a class="dropdown-item" href="<?= $tplVars['WWW_URL']; ?>index.php?controller=user&task=out"><i class="fa fa-power-off"></i> Déconnexion</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+</nav>
+<div class="container-fluid">
+	<div class="row">
+		<aside class="col-md-3 p-3 d-none d-md-block bg-light">
+		<h4 class="my-4 text-muted"><i class="fa fa-home"></i> Accueil</h4>
+		<nav class="nav nav-pills flex-column">
+			<a class="nav-item nav-link" href="<?= $tplVars['WWW_URL']; ?>index.php?controller=Admin\Dashboard&task=index">Tableau de bord</a>
+		</nav>
+		<h4 class="my-4 text-muted"><i class="fa fa-globe"></i> Site web</h4>
+		<nav class="nav nav-pills flex-column">
+			<a class="nav-item nav-link" href="<?= $tplVars['WWW_URL']; ?>" target="_blank">Aller sur le site</a>
+		</nav>
+		<h4 class="my-4 text-muted"><i class="fa fa-shopping-basket"></i> Boutique</h4>
+		<nav class="nav nav-pills flex-column">
+			<a class="nav-item nav-link" href="<?= $tplVars['WWW_URL']; ?>index.php?controller=Admin\Brand&task=index">Gestion des marques</a>
+			<a class="nav-item nav-link" href="<?= $tplVars['WWW_URL']; ?>index.php?controller=Admin\Tag&task=index">Gestion des tags</a>
+			<a class="nav-item nav-link" href="<?= $tplVars['WWW_URL']; ?>index.php?controller=Admin\ProductLine&task=index">Gestion des rayons</a>
+			<a class="nav-item nav-link" href="<?= $tplVars['WWW_URL']; ?>index.php?controller=Admin\Product&task=index">Gestion des produits</a>
+			<a class="nav-item nav-link" href="<?= $tplVars['WWW_URL']; ?>index.php?controller=Admin\Order">Gestion des commandes</a>
+		</nav>
+		<h4 class="my-4 text-muted"><i class="fa fa-cogs"></i> Paramètres</h4>
+		<nav class="nav nav-pills flex-column">
+			<a class="nav-item nav-link" href="<?= $tplVars['WWW_URL']; ?>index.php?controller=Admin\User&task=index">Gestion des utilisateurs</a>
+		</nav>
+		</aside>
+		<main class="col-md-9 p-3">
+		<!-- page content -->
+		<?= $pageContent ?>
+		<!-- page content -->
+		</main>
+	</div>
+</div>
+
+	
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="<?= $tplVars['WWW_URL']; ?>assets/admin/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

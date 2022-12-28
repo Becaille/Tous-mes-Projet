@@ -1,0 +1,20 @@
+<!-- Rayon content -->
+		<header>
+				<h1><?= htmlspecialchars($tplVars['pLine_name']); ?></h1>
+		</header>
+		<section class="product-list">
+			<h2>Liste des produits</h2>
+			<ul class="cols cols--4 gutter">
+			    <!-- boucle sur les produits -->
+			    <?php foreach($tplVars['prods'] as $p): ?>
+				<li>
+					<a href="<?= $tplVars['WWW_URL']; ?>index.php?controller=product&task=index&id=<?= intval($p['Id']);?>">
+					<img src="<?= $tplVars['WWW_URL']; ?>uploads/product/<?= htmlspecialchars($p['Visuel']); ?>" />
+					<span><?= htmlspecialchars($p['Name']); ?></span>
+					</a>
+				</li>
+				<?php endforeach; ?>
+				<!-- boucle sur les produits -->
+			</ul>
+		</section>
+<!-- Rayon content -->

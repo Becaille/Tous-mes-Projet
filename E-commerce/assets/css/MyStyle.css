@@ -1,0 +1,179 @@
+/* *****************************************************************
+PRODUCT-LIST
+***************************************************************** */
+.product-list ul {
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+
+.product-list ul li a img {
+    display:block;
+    opacity:0.8;
+}
+
+.product-list ul li a {
+    text-decoration:none;
+}
+
+.product-list ul li a span {
+  display:block;
+  line-height: 2.4em;
+  height: 2.4em;
+  padding:0 0.6em;
+  background-color:var(--color-body);
+}
+
+.product-list ul li a:hover img {
+    opacity:1;
+}
+
+.product-list ul li a:hover span {
+  background-color:var(--color-menu);
+}
+
+/* *****************************************************************
+ICON
+***************************************************************** */
+
+.icon-close:before {
+  content: "\2716";
+}
+
+
+/* *****************************************************************
+ORDER
+***************************************************************** */
+.standard-table
+{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.standard-table caption
+{
+    /* structure */
+    padding: 0.5em 0;
+
+    /* presentation */
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.standard-table tbody tr:nth-child(even)
+{
+    background-color: #DFE5DA;
+}
+
+.standard-table tbody tr:nth-child(odd)
+{
+    background-color: #BABFB5;
+}
+
+.standard-table tbody tr
+{
+    transition: background-color 0.25s;
+}
+
+.standard-table tbody tr:hover
+{
+    background-color: #998882;
+    cursor: default;
+}
+
+.standard-table td,
+.standard-table th
+{
+    padding: 0.25em 0.5em;
+}
+
+.standard-table th
+{
+    color: #00968B;
+}
+
+.standard-table thead tr
+{
+    text-align: left;
+}
+
+.standard-table .money-column,
+.standard-table tfoot th
+{
+    text-align: right;
+}
+
+.standard-table .qte-column {
+    text-align: center;
+}
+
+
+
+/* *****************************************************************
+MESSAGE ERROR
+***************************************************************** */
+
+     .alert-section .icon img {
+        width: 50px;
+        height: auto;
+    }
+    .alert-section .alert-element {
+        z-index: 1000;
+        position: fixed;
+        top: 50px;
+        right: 25px;
+        color: rgba(255, 255, 255, 1);
+        border-radius: 4px;
+        font-weight: 800;
+        display: flex;
+        align-items: stretch;
+        padding-right: 20px;
+        perspective: 1000px;
+        opacity: 0;
+        transform-origin: bottom left;
+        transform: rotate(90deg) scale(0.5) translate(100px, -300px) rotateX(90deg);
+        transition: all 500ms cubic-bezier(0, 0.6, 0.35, 1.4);
+    }
+    .alert-section .alert-element .icon {
+        padding: 20px;
+        background: transparent;
+        color: white;
+        border-radius: 4px 0px 0px 4px;
+        overflow: hidden;
+    }
+    .alert-section .alert-element .icon i {
+        transform: scale(0.2) translateY(50px);
+        opacity: 0;
+        transition: all 500ms cubic-bezier(0, 0.6, 0.35, 1.4) 400ms;
+    }
+
+    .alert-section .alert-element .text {
+        background: transparent;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        border-radius: 0px 4px 4px 0px;
+        transform: rotateY(90deg);
+        transition: all 500ms ease-in-out 250ms;
+        transform-origin: center left;
+        opacity: 0;
+        color:#fff;
+    }
+    .alert-section .alert-element.is-active {
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+    }
+    .alert-section .alert-element.is-active .material-icons {
+        transform: scale(1) translateY(0px);
+        opacity: 1;
+    }
+    .alert-section .alert-element.is-active .text {
+        transform: rotateY(0deg);
+        opacity: 1;
+    }
+    .alert-success {
+        background-color: lightgreen;
+    }
+    .alert-danger {
+        background-color: red;
+    }
